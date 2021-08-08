@@ -133,18 +133,16 @@ class HBNBCommand(cmd.Cmd):
                 tokenarguments = arguments.split('=')
                 key = tokenarguments[0]
                 value = tokenarguments[1]
-                
+
                 if value[0] == '"' and value[-1] == '"':
                     value = value.replace("_", " ")
-
-                    
 
                 elif value.isnumeric():
                     value = int(value)
                 else:
                     value = float(value)
-            
-            setattr(new_instance, key, value)
+
+                setattr(new_instance, key, value)
             
         storage.save()
         print(new_instance.id)
