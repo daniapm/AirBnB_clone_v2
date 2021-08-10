@@ -34,15 +34,18 @@ class DBStorage:
         new_dict = {}
         if cls is not None:
             for key in self.__session.query(cls).all:
-                new_dict.update((key.__class__.__name__ + "." + key.id))
+                new_dict[key.__class__.__name__ + "." + key.id] = key
             return new_dict
 
         else:
-            new_dict.update(self.__session.query(User).all)
-            new_dict.update(self.__session.query(State).all)
-            new_dict.update(self.__session.query(City).all)
-            new_dict.update(self.__session.query(Amenity).all)
-            new_dict.update(self.__session.query(Place).all)
+            for key in (self.__session.query(User).all)
+                new_dict[key.__class__.__name__ + "." + key.id] = key
+            for key in(self.__session.query(State).all)
+                new_dict[key.__class__.__name__ + "." + key.id] = key
+            for key in (self.__session.query(City).all)
+                new_dict[key.__class__.__name__ + "." + key.id] = key
+            for key in (self.__session.query(Place).all)
+                new_dict[key.__class__.__name__ + "." + key.id] = key
             return new_dict
 
     def new(self, obj):

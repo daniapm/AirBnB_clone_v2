@@ -26,15 +26,15 @@ class BaseModel:
             
         else:
             for key, value in kwargs.items():
-                    kwargs={ 'name': "California" }
-            print(kwargs) 
-            kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'],
-                                                     '%Y-%m-%dT%H:%M:%S.%f')
-            kwargs['created_at'] = datetime.strptime(kwargs['created_at'],
-                                                     '%Y-%m-%dT%H:%M:%S.%f')
-            del kwargs['__class__']
-            self.__dict__.update(kwargs)
-
+                if key == "__class"__:
+                    continue
+                elif key == "created_at":
+                    setattr(self, key, datatime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f'))
+                elif key == "update_at":
+                    setattr(self, key, datatime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f'))
+                else:
+                    setattr(self, key, value) 
+                    
     def __str__(self):
         """Returns a string representation of the instance"""
         cls = (str(type(self)).split('.')[-1]).split('\'')[0]
