@@ -8,7 +8,7 @@ from sqlalchemy.orm import relationship
 from models.engine.file_storage import FileStorage
 
 
-class State(BaseModel):
+class State(BaseModel, Base):
     """ State class """
     __tablename__ = 'states'
     name = Column(String(128), nullable=False)
