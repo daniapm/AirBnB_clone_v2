@@ -19,8 +19,8 @@ class State(BaseModel):
     def city_get(self):
         """getter attribute cities
         """
-        city_list = {}
-        for i in FileStorage.all(City).items():
-            if i in self.id:
-                city_list[i] = FileStorage.all(City)
+        city_list = []
+        for i in FileStorage.all(City).values():
+            if i.state_id == self.id:
+                city_list.append(i)
         return city_list
