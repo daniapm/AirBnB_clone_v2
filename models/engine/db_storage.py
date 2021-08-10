@@ -16,18 +16,13 @@ class DBStorage:
     __session = None
 
     def __init__(self):
-        usuario = getenv("HBNB_MYSQL_USER")
-        contraseña = getenv("HBNB_MYSQL_PWD")
-        base_datos = getenv("HBNB_MYSQL_DB")
-        post = getenv("HBNB_MYSQL_HOST")
-        running_environment = ("HBNB_ENV")
 
         self.__engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'
-                                      .format(usuario, contraseña,
-                                      post, base_datos),
-                                      pool_pre_ping=True)
+                                        .format(getenv("HBNB_MYSQL_USER"), cgetenv("HBNB_MYSQL_USER"),
+                                        getenv("HBNB_MYSQL_HOST"), getenv("HBNB_MYSQL_DB")),
+                                        pool_pre_ping=True)
 
-        if running_environment == "test":
+        if getenv("HBNB_ENV") == "test":
             Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
@@ -45,6 +40,8 @@ class DBStorage:
             for key in (self.__session.query(City).all)
                 new_dict[key.__class__.__name__ + "." + key.id] = key
             for key in (self.__session.query(Place).all)
+                new_dict[key.__class__.__name__ + "." + key.id] = key
+            for key in (self.__session.query(Review).all)
                 new_dict[key.__class__.__name__ + "." + key.id] = key
             return new_dict
 
