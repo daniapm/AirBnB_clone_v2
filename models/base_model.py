@@ -34,7 +34,8 @@ class BaseModel:
                     setattr(self, key, datatime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f'))
                 else:
                     setattr(self, key, value) 
-                    
+        del kwargs['class']
+        self.dict.update(kwargs)
     def __str__(self):
         """Returns a string representation of the instance"""
         cls = (str(type(self)).split('.')[-1]).split('\'')[0]
