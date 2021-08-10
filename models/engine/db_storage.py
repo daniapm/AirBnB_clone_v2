@@ -8,6 +8,7 @@ from models.city import City
 from models.state import State
 from models.user import User
 from models.place import Place
+from models.review import Review
 from sqlalchemy.orm import scoped_session
 
 
@@ -24,24 +25,24 @@ class DBStorage:
 
         if getenv("HBNB_ENV") == "test":
             Base.metadata.drop_all(self.__engine)
-
+        
     def all(self, cls=None):
         new_dict = {}
         if cls is not None:
-            for key in self.__session.query(cls).all:
+            for key in self.__session.query(cls):
                 new_dict[key.__class__.__name__ + "." + key.id] = key
             return new_dict
 
         else:
-            for key in (self.__session.query(User).all):
+            for key in (self.__session.query(User)):
                 new_dict[key.__class__.__name__ + "." + key.id] = key
-            for key in(self.__session.query(State).all):
+            for key in(self.__session.query(State)):
                 new_dict[key.__class__.__name__ + "." + key.id] = key
-            for key in (self.__session.query(City).all):
+            for key in (self.__session.query(City)):
                 new_dict[key.__class__.__name__ + "." + key.id] = key
-            for key in (self.__session.query(Place).all):
+            for key in (self.__session.query(Place)):
                 new_dict[key.__class__.__name__ + "." + key.id] = key
-            for key in (self.__session.query(Review).all):
+            for key in (self.__session.query(Review)):
                 new_dict[key.__class__.__name__ + "." + key.id] = key
             return new_dict
 
@@ -59,6 +60,5 @@ class DBStorage:
         Base.metadata.create_all(self.__engine)
         session_factory = sessionmaker(bind=self.__engine,
                                        expire_on_commit=False)
-        self.__session = scoped_session(session_factory)
+        Session = scoped_session(session_factory)
         self.__session = Session()
-        self.__session.close()
