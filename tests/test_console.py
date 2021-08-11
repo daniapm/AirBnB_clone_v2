@@ -10,7 +10,7 @@ from models.base_model import BaseModel
 from models import storage
 from console import HBNBCommand
 
-class TestFileStorage(unittest.TestCase):
+class TestConsole(unittest.TestCase):
     """Testing instantiation of the FileStorage class."""
     storage = FileStorage()
     path = storage._FileStorage__file_path
