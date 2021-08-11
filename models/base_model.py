@@ -33,6 +33,11 @@ class BaseModel:
                 else:
                     setattr(self, key, value)
 
+            if not "id" in self.__dict__:
+                self.id = str(uuid.uuid4())
+                self.created_at = datetime.now()
+                self.updated_at = datetime.now()
+
     def __str__(self):
         """Returns a string representation of the instance"""
         cls = (str(type(self)).split('.')[-1]).split('\'')[0]
