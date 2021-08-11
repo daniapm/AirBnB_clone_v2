@@ -134,6 +134,7 @@ class HBNBCommand(cmd.Cmd):
 
                 if value[0] == '"' and value[-1] == '"':
                     value = value.replace("_", " ")
+                    value = eval(value)
 
                 elif value.isnumeric():
                     value = int(value)
