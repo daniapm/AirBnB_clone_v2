@@ -18,7 +18,7 @@ class State(BaseModel, Base):
             "state", cascade="all, delete"))
     else:
         @property
-        def get_cities(self):
+        def cities(self):
             """the geter of cities"""
             from models.city import City
             objs = models.storage.all(City)
