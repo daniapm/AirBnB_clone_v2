@@ -48,3 +48,9 @@ class testDBStorage(unittest.TestCase):
             """check that all returns a dictionaty"""
             object = self.storage.all()
             self.assertIs(type(object), dict)
+
+        @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') !='Filestorage', "if storage is filestorage")
+        def test_new(self):
+            """test new"""
+            self.storage.new(State(name="Holbies"))
+            self.assertIn(State(name="Holbies"), list(self.storage._DBStorage__session.new))
