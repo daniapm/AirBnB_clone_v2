@@ -1,10 +1,20 @@
 #!/usr/bin/python3
 """ Module for testing file storage"""
-import unittest
+import models
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.user import User
+from models.engine import db_storage
+from models.amenity import Amenity
 from models.base_model import BaseModel
-from models import storage
+import json
 import os
-from models.engine.db_storage import DBStorage
+import pep8
+import unittest
+import os
+DBStorage = db_storage.DBStorage
 
 
 class testDBStorage(unittest.TestCase):
@@ -23,3 +33,9 @@ class testDBStorage(unittest.TestCase):
         self.assertTrue(len(DBStorage.new.__doc__) > 1)
         self.assertTrue(len(DBStorage.delete.__doc__) > 1)
         self.assertTrue(len(DBStorage.reload.__doc__) > 1)
+
+    class TestFileStorage(unittest.TestCase):
+        @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') != 'db', "if storage is not dbstorage")
+        def test_all_returns_dict(self):
+            """check that all returns a dictionaty"""
+            self.assertIs(type(models.storage.all()), dict)
