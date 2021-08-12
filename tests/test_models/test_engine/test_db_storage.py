@@ -34,7 +34,6 @@ class testDBStorage(unittest.TestCase):
         self.assertTrue(len(DBStorage.delete.__doc__) > 1)
         self.assertTrue(len(DBStorage.reload.__doc__) > 1)
 
-    class TestFileStorage(unittest.TestCase):
         @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') != 'db', "if storage is not dbstorage")
         def test_all_returns_dict(self):
             """check that all returns a dictionaty"""
