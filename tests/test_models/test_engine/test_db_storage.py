@@ -23,6 +23,15 @@ class testDBStorage(unittest.TestCase):
     def test_pep8_base(self):
         """ test pep8 style"""
         self.assertEqual(os.system('pep8 models/engine/db_storage.py'), 0)
+    
+    def test_filename(self):
+        """test that check file name"""
+        self.assertTrue(hasattr(DBStorage, "__init__"))
+        self.assertTrue(hasattr(DBStorage, "all"))
+        self.assertTrue(hasattr(DBStorage, "new"))
+        self.assertTrue(hasattr(DBStorage, "save"))
+        self.assertTrue(hasattr(DBStorage, "delete"))
+        self.assertTrue(hasattr(DBStorage, "reload"))
 
     def test_module_docstring(self):
         """test documentation"""
@@ -35,6 +44,7 @@ class testDBStorage(unittest.TestCase):
         self.assertTrue(len(DBStorage.reload.__doc__) > 1)
 
         @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') != 'db', "if storage is not dbstorage")
-        def test_all_returns_dict(self):
+        def test_all(self):
             """check that all returns a dictionaty"""
-            self.assertIs(type(models.storage.all()), dict)
+            object = self.storage.all()
+            self.assertIs(type(object), dict)
