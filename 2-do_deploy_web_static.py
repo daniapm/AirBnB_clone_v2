@@ -28,7 +28,7 @@ def do_deploy(archive_path):
             .format(file_new[0]))
         run('rm -rf /data/web_static/current')
         run('ln -s /data/web_static/releases/{}/ /data/web_static/current'
-             .format(file_new[0]))
+            .format(file_new[0]))
         return True
     except:
         return False
