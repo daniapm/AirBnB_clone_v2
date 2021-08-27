@@ -9,6 +9,7 @@ from fabric.api import local
 
 env.hosts = ['35.196.239.113', '3.94.160.0']
 
+
 def do_pack():
     """Fabric script that generates a .tgz archive from the contents of the
     web_static folder of your AirBnB Clone repo, using the function do_pack.
@@ -22,6 +23,7 @@ def do_pack():
         return file
     except:
         return None
+
 
 def do_deploy(archive_path):
     """
@@ -43,10 +45,11 @@ def do_deploy(archive_path):
             .format(file_new[0]))
         run('rm -rf /data/web_static/current')
         run('ln -s /data/web_static/releases/{}/ /data/web_static/current'
-             .format(file_new[0]))
+            .format(file_new[0]))
         return True
     except:
         return False
+
 
 def deploy():
     """ Fabric script (based on the file 2-do_deploy_web_static.py)
