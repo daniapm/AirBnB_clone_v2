@@ -47,8 +47,8 @@ def hello_number(n):
     """
     display “n is a number” only if n is an integer
     """
-    if isinstance(n, int):
-        return '{} is a number'.format(n)
+    n = int(n)
+    return '{} is a number'.format(n)
 
 
 if __name__ == '__main__':
