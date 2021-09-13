@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 
 @app.teardown_appcontext
-def handleteardown(self):
+def handle_teardown(self):
     """
     Teardown events abort
     """
