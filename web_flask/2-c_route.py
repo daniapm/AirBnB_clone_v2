@@ -24,7 +24,7 @@ def hello():
 
 
 @app.route('/c/<text>', strict_slashes=False)
-def hello():
+def hello_c():
     """
     print HBNB
     """
