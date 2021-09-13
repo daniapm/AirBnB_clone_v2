@@ -53,7 +53,7 @@ def hello_number(n):
 
 
 @app.route('/number_template/<int:n>')
-def hello_number(n):
+def template_number(n):
     """
     display a HTML page only if n is an integer
     """
