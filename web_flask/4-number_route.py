@@ -47,7 +47,7 @@ def hello_number(n):
     """
     display “n is a number” only if n is an integer
     """
-    n = int(n)
+    n = str(n)
     return '{} is a number'.format(n)
 
 
