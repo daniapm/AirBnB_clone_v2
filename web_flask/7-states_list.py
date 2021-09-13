@@ -9,9 +9,9 @@ app = Flask(__name__)
 
 
 @app.teardown_appcontext
-def teardown_request(self):
+def handleteardown(self):
     """
-    This gets called after each request
+    Teardown events abort
     """
     storage.close()
 
@@ -19,9 +19,9 @@ def teardown_request(self):
 @app.route('/states_list', strict_slashes=False)
 def state_list():
     """
-    display a HTML page only if n is an integer
+    Display a HTML page
     """
-    states = storage.all('State').values() 
+    states = storage.all('State').values()
     return render_template("7-states_list.html", states=states)
 
 if __name__ == '__main__':
