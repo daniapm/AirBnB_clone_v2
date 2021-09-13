@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """this module defines engine DBStorage"""
 from sqlalchemy import (create_engine)
-from os import getenv
+from os import getenv, remove
 from sqlalchemy.orm import sessionmaker, Session
 from models.base_model import Base, BaseModel
 from models.amenity import Amenity
@@ -71,3 +71,7 @@ class DBStorage:
                                        expire_on_commit=False)
         Session = scoped_session(session_factory)
         self.__session = Session()
+
+    def close(self):
+        """method reload that reload the session"""
+        self.__session.close()
