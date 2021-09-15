@@ -15,7 +15,7 @@ def states_id(id=None):
         method to render states
     """
     states = storage.all(State)
-    if id:
+    if id is not None:
         id = "State." + id
     return render_template("9-states.html", states=states, id=id)
 
